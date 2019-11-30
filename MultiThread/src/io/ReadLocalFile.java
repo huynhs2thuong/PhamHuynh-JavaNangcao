@@ -41,8 +41,9 @@ public class ReadLocalFile {
 
         saveImage(imageUrl, destinationFile);*/
        String s = "https://github.com/nam-long/learning-java/blob/master/resources/cadao.txt";
-       String t = "file.txt";
+       String t = "E:\\Javanangcao\\MultiThread\\file1.txt";
        dowloadReadSource(s,t);
+
     }
 
     public static String read(String filename) throws IOException{
@@ -194,7 +195,12 @@ public class ReadLocalFile {
 
     public static void dowloadReadSource(String strUrl,String filename) throws IOException{
         String str = null;
+        File apath = new File(filename);
+        if(apath.exists() == false) {
+            apath.getParentFile().mkdirs();
+        }
         URL url = new URL(strUrl);
+
         InputStream is = url.openStream();
         BufferedInputStream bis = new BufferedInputStream(is);
         FileOutputStream fos = new FileOutputStream(filename);

@@ -38,7 +38,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="io.Serialization" />
+      <option name="MAIN_CLASS_NAME" value="io.ReadLocalFile" />
       <module name="MultiThread" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
