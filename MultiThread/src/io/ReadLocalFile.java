@@ -40,10 +40,10 @@ public class ReadLocalFile {
         String destinationFile = "image.jpg";
 
         saveImage(imageUrl, destinationFile);*/
-       String s = "https://github.com/nam-long/learning-java/blob/master/resources/cadao.txt";
+      /* String s = "https://github.com/nam-long/learning-java/blob/master/resources/cadao.txt";
        String t = "E:\\Javanangcao\\MultiThread\\file1.txt";
        dowloadReadSource(s,t);
-
+*/          listFile("E:\\Javanangcao\\MultiThread\\src\\io");
     }
 
     public static String read(String filename) throws IOException{
@@ -195,7 +195,7 @@ public class ReadLocalFile {
 
     public static void dowloadReadSource(String strUrl,String filename) throws IOException{
         String str = null;
-        File apath = new File(filename);
+        File apath = new File(filename);//kiem tra file
         if(apath.exists() == false) {
             apath.getParentFile().mkdirs();
         }
@@ -211,6 +211,21 @@ public class ReadLocalFile {
         }
         is.close();
         fos.close();
+    }
+    public static void listFile(String folderPath) throws IOException{
+        File folder = new File(folderPath);
+        File[] file = folder.listFiles();
+        if(file.length == 0){
+            System.out.println(folder.getCanonicalPath());
+        }
+        for(File f : file){
+            if(f.isFile()){
+            System.out.println((f.getCanonicalPath()));
+        }
+            else {
+                listFile(f.getPath());
+            }
+        }
     }
 
 }
