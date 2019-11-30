@@ -36,10 +36,13 @@ public class ReadLocalFile {
 
        /* downloadImage("https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
                 new File("C:\\\\Users\\\\DELL\\\\Documents\\\\image.jpg").getAbsolutePath());*/
-        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg";
+       /* String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg";
         String destinationFile = "image.jpg";
 
-        saveImage(imageUrl, destinationFile);
+        saveImage(imageUrl, destinationFile);*/
+       String s = "https://github.com/nam-long/learning-java/blob/master/resources/cadao.txt";
+       String t = "file.txt";
+       dowloadReadSource(s,t);
     }
 
     public static String read(String filename) throws IOException{
@@ -188,4 +191,20 @@ public class ReadLocalFile {
         is.close();
         os.close();
     }
+
+    public static void dowloadReadSource(String strUrl,String filename) throws IOException{
+        String str = null;
+        URL url = new URL(strUrl);
+        InputStream is = url.openStream();
+        BufferedInputStream bis = new BufferedInputStream(is);
+        FileOutputStream fos = new FileOutputStream(filename);
+        byte[] buffer = new byte[100];
+        int count;
+        while ((count = bis.read(buffer)) !=-1){
+            fos.write(buffer,0,count);
+        }
+        is.close();
+        fos.close();
+    }
+
 }
