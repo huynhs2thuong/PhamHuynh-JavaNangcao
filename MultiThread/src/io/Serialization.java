@@ -4,9 +4,13 @@ import java.io.*;
 
 public class Serialization {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Studentone student = new  Studentone("A", 20, "TP HCM");
-         student.save("E:\\Javanangcao\\MultiThread\\file.txt");
-        System.out.println(student);
+        Studentone studentone = new  Studentone("A", 20, "TP HCM");
+        studentone.save("E:\\Javanangcao\\MultiThread\\file.txt");
+        Studentone student1 = studentone.load("E:\\Javanangcao\\MultiThread\\file.txt");
+
+        System.out.println(student1);
+
+        System.out.println(studentone);
     }
 }
 class Studentone implements Serializable{
@@ -29,12 +33,14 @@ class Studentone implements Serializable{
         fos.close();
     }
 
-    public Student load(String filename) throws IOException, ClassNotFoundException {
-        Student student;
+    public Studentone load(String filename) throws IOException, ClassNotFoundException {
+        Studentone student;
+
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream ois = new ObjectInputStream(fis);
-        student=(Student) ois.readObject();
+        student = (Studentone) ois.readObject();
         fis.close();
+
         return student;
     }
 
