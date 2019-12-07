@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class ReadLocalFile {
     public static void main(String[] args) throws IOException {
@@ -43,7 +44,9 @@ public class ReadLocalFile {
       /* String s = "https://github.com/nam-long/learning-java/blob/master/resources/cadao.txt";
        String t = "E:\\Javanangcao\\MultiThread\\file1.txt";
        dowloadReadSource(s,t);
-*/          listFile("E:\\Javanangcao\\MultiThread\\src\\io");
+*/
+
+     removeDuplicatedFiles("E:\\Javanangcao\\MultiThread\\src\\ca","E:\\Javanangcao\\MultiThread\\src\\ca\\1.txt");
     }
 
     public static String read(String filename) throws IOException{
@@ -227,5 +230,30 @@ public class ReadLocalFile {
             }
         }
     }
-
+    public static ArrayList<String> listPaths = new ArrayList<>();
+    public static void removeDuplicatedFiles(String folderPath, String filename) throws IOException {
+        File folder = new File(folderPath);
+        File[] file = folder.listFiles();
+        if(file.length == 0){
+            System.out.println(folder.getCanonicalPath());
+        }
+        for(File f : file){
+            if(f.isFile()){
+                if(f.getCanonicalPath().equals(filename)){
+                    String str1 = readUTF8(f.getCanonicalPath());
+                    String str2 = readUTF8(filename);
+                    if(str1 == str2){
+                    f.delete();
+                    }
+                }
+                else{
+                    listPaths.add(f.getCanonicalPath());
+                    System.out.println(f.getCanonicalPath());
+                }
+            }
+            else {
+                listFile(f.getPath());
+            }
+        }
+    }
 }
